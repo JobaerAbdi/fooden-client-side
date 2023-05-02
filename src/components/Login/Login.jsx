@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/UserContext';
 
 const Login = () => {
+  const [error, setError] = useState('')
+  const {login} = useContext(AuthContext);
+
+  const handleSignIn =(event)=>{
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    // console.log(email,password);
+    form.reset();
+    login(email,password)
+    .then(result=>{
+      console.log(result.user)
+    })
+    .catch(error=>{
+      setError(error.message)
+    })
+
+  };
     return (
         <div className='flex justify-center items-center pt-8'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-amber-400'>
@@ -11,7 +31,7 @@ const Login = () => {
             Sign in to access your account
           </p>
         </div>
-        <form
+        <form onSubmit={handleSignIn}
           noValidate=''
           action=''
           className='space-y-6 ng-untouched ng-pristine ng-valid'
@@ -45,6 +65,7 @@ const Login = () => {
                 className='w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-200 focus:border-gray-900 text-gray-900'
                 required
               />
+              <p className='text-sm mt-2 font-bold text-red-600'>{error}</p>
             </div>
           </div>
 
