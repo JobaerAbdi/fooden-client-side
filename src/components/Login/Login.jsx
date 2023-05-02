@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const [error, setError] = useState('')
@@ -16,6 +17,7 @@ const Login = () => {
     login(email,password)
     .then(result=>{
       console.log(result.user)
+      toast.success('Login successful.')
     })
     .catch(error=>{
       setError(error.message)

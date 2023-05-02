@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const [error, setError] = useState('')
@@ -22,6 +23,7 @@ const Register = () => {
     createUser(email,password)
     .then(result=>{
       console.log(result.user)
+      toast.success('Sign up successful')
     })
     .catch(error=>{
       setError(error.message)
