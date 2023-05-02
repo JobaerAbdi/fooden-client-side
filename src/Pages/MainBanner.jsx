@@ -10,7 +10,7 @@ const MainBanner = () => {
         />
       </div>
       <div className="sm:w-full lg:w-2/5 ms-7">
-        <p>
+        <p className="font-semibold">
           The mouth-watering recipes in this uplifting book come from chefs,
           celebrities and women living in the war-torn countries where we work.
           The recipes are interspersed with beautiful photographs and stories

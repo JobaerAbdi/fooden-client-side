@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import MainBanner from '../../Pages/MainBanner';
 import { useLoaderData } from 'react-router-dom';
 import DisplayRecipe from '../../Pages/DisplayRecipe';
+import SectionOne from '../../Pages/SectionOne/SectionOne';
 
 const Home = () => {
     const [recipes,setRecipes] = useState([])
@@ -22,6 +23,7 @@ const Home = () => {
                     ></DisplayRecipe>)
                 }
             </div>
+            <SectionOne></SectionOne>
         </div>
 
 
