@@ -74,10 +74,24 @@ const Navbar = () => {
 export default Navbar;
  */
 
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../context/UserContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+    const {user,logOut} = useContext(AuthContext);
+
+    const handleSignOut = ()=>{
+        logOut()
+        .then(()=>{
+            toast.success('Sing out successful')
+        })
+        .catch(error=>{
+            toast.error(error.message)
+        })
+    };
+
   return (
     <div>
       <div className="navbar bg-amber-400 shadow-lg lg:px-12">
@@ -143,58 +157,45 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-            <li className="mr-9">
-              <NavLink
-                to="/profile"
-                className={({ isActive }) =>
-                  isActive && "bg-cyan-300 text-black px-3 py-1 rounded-md"
-                }
-              >
-                Profile
-              </NavLink>
-            </li>
-            <li className="mr-9">
-              <NavLink
+
+             {
+                user && user ? 
+                <>
+                <li className="mr-9">
+                <NavLink
+                  to="/profile"
+                  className={({ isActive }) =>
+                    isActive && "bg-cyan-300 text-black px-3 py-1 rounded-md"
+                  }
+                >
+                  Profile
+                </NavLink>
+              </li>
+              <li className="mr-9">
+              <NavLink onClick={handleSignOut}
                 to="/login"
-                className={({ isActive }) =>
-                  isActive && "bg-cyan-300 text-black px-3 py-1 rounded-md"
-                }
-              >
-                Login
-              </NavLink>
-            </li>
-
-
-      {/*       <Link to='/login'>
-            <button className="inline-flex items-center bg-gray-300 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-            Logout
-            <svg
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="w-4 h-4 ml-1"
-              viewBox="0 0 24 24"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7"></path>
-            </svg>
-            </button>
-            </Link> */}
-
-
-             <li className="mr-9">
-              <NavLink
-                to="/login"
-                className={({ isActive }) =>
+                className= {({ isActive }) =>
                   isActive && "bg-cyan-300 text-black px-3 py-1 rounded-md"
                 }
               >
                 Logout
               </NavLink>
-            </li>
+              </li>
+              </> : 
+              <>
+              <li className="mr-9">
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) =>
+                    isActive && "bg-cyan-300 text-black px-3 py-1 rounded-md"
+                  }
+                >
+                  Login
+                </NavLink>
+              </li>
+              </>
+             }
 
-        
             <li className="mr-9">
               <NavLink
                 to="/blogs"

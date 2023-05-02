@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
   const [error, setError] = useState('')
-  const {login} = useContext(AuthContext);
+  const {login,signInWithGoogle} = useContext(AuthContext);
 
   const handleSignIn =(event)=>{
     event.preventDefault();
@@ -24,6 +24,19 @@ const Login = () => {
     })
 
   };
+
+  const handleSignInWithGoogle =()=>{
+    signInWithGoogle()
+    .then(result=>{
+      console.log(result.user);
+      toast.success('Google sign in success')
+    })
+    .catch(error=>{
+      toast.error(error.message)
+    }) 
+  };
+
+
     return (
         <div className='flex justify-center items-center pt-8'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-amber-400'>
@@ -88,7 +101,7 @@ const Login = () => {
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div>
         <div className='flex justify-center space-x-4'>
-          <button aria-label='Log in with Google' className='p-3 rounded-sm'>
+          <button onClick={handleSignInWithGoogle} aria-label='Log in with Google' className='p-3 rounded-sm'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 32 32'
