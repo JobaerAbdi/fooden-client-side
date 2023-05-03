@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 const Register = () => {
   const [error, setError] = useState('')
-  const {createUser} = useContext(AuthContext)
+  const {createUser,updateName} = useContext(AuthContext)
   const navigate = useNavigate();
 
   const handleSignUp =(event)=>{
@@ -26,6 +26,13 @@ const Register = () => {
       console.log(result.user)
       navigate('/home')
       toast.success('Sign up successful')
+      updateName(name)
+      .then(()=>{
+        console.log('Name update successful')
+      })
+      .catch(error=>{
+        toast.error(error.message)
+      })
     })
     .catch(error=>{
       setError(error.message)
