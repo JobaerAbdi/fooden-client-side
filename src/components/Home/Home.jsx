@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import MainBanner from '../../Pages/MainBanner';
-import { useLoaderData } from 'react-router-dom';
 import DisplayRecipe from '../../Pages/DisplayRecipe';
 import SectionOne from '../../Pages/SectionOne/SectionOne';
 import SectionTwo from '../../Pages/SectionOne/SectionTwo';
+import { useNavigation } from 'react-router-dom';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const Home = () => {
     const [recipes,setRecipes] = useState([])
@@ -12,6 +13,11 @@ const Home = () => {
         .then(res=>res.json())
         .then(data=>setRecipes(data))
     },[])
+
+    const navigation = useNavigation();
+    if(navigation.state === 'loading'){
+      return <LoadingSpinner></LoadingSpinner>
+    };
 
     return (
         <div>

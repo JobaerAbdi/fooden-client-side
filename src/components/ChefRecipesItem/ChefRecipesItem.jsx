@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation} from "react-router-dom";
 import { toast } from "react-toastify";
+import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 const ChefRecipesItem = () => {
     const [isDisable01, setIsDisable01] = useState(false)
@@ -27,21 +28,27 @@ const ChefRecipesItem = () => {
   const { chef_img, chefName, Likes, numberOfRecipes, yearsOfExperience,recipe1,recipe2,recipe3,bioData } =
     chefRecipe;
   console.log(chefRecipe);
+
+  const navigation = useNavigation();
+    if(navigation.state === 'loading'){
+      return <LoadingSpinner></LoadingSpinner>
+    };
+  
   return (
     <div className="mx-14 mt-8">
       <div className="card card-side bg-base-100 shadow-xl">
-        <figure>
+        <figure className="ms-56">
           <img src={chef_img} alt="chef" />
         </figure>
-        <div className="card-body">
+        <div className="card-body ms-20 ">
             <h1 className="font-bold">Bio Data : </h1>
           <h2 className="card-title"><img className="w-96 h-96" src={bioData} alt="" /></h2>
-          <h2 className="card-title">Name : {chefName}</h2>
-          <h2 className="card-title">Number Of Recipes : {numberOfRecipes}</h2>
-          <h2 className="card-title">
+          <h2 className="card-title font-bold">Name : {chefName}</h2>
+          <h2 className="card-title font-bold">Number Of Recipes : {numberOfRecipes}</h2>
+          <h2 className="card-title font-bold">
             Years Of Experience : {yearsOfExperience}
           </h2>
-          <h2 className="card-title">Likes : {Likes}</h2>
+          <h2 className="card-title font-bold">Likes : {Likes}</h2>
         </div>
       </div>
 
