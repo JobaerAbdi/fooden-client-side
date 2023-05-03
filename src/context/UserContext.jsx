@@ -8,31 +8,30 @@ export const AuthContext = createContext(null);
 
 const UserContext = ({children}) => {
     const [user,setUser] = useState(null);
-    const [loading,setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
     const googleProvider = new GoogleAuthProvider();
 
     const githubProvider = new GithubAuthProvider();
 
     const createUser = (email,password)=>{
-        setLoading(true)
+        setLoading(true);
         return createUserWithEmailAndPassword(auth,email,password)
     };
 
     const updateName = (name)=>{
-        setLoading(true)
        return updateProfile(auth.currentUser,{
             displayName : name
         })
     };
 
     const login = (email,password)=>{
-        setLoading(true)
+        setLoading(true);
         return signInWithEmailAndPassword(auth,email,password)
     };
 
     const logOut = ()=>{
-        setLoading(true)
+        setLoading(true);
         return signOut(auth)
     };
 

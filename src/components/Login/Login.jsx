@@ -6,11 +6,13 @@ import { toast } from 'react-toastify';
 const Login = () => {
   const [error, setError] = useState('')
   const {login,signInWithGoogle,signInWithGithub} = useContext(AuthContext);
-  const navigate = useNavigate()
-  const location = useLocation()
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // console.log(location);
   const from = location.state?.from?.pathname || '/home';
-  console.log(from);
+
 
   const handleSignIn =(event)=>{
     event.preventDefault();
@@ -21,7 +23,7 @@ const Login = () => {
     login(email,password)
     .then(result=>{
       console.log(result.user)
-      navigate(from, {replace : true})
+      navigate(from, {replace: true})
       toast.success('Login successful.')
     })
     .catch(error=>{
