@@ -1,22 +1,27 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate} from 'react-router-dom';
 import { AuthContext } from '../../context/UserContext';
 import { toast } from 'react-toastify';
 
 const Login = () => {
   const [error, setError] = useState('')
   const {login,signInWithGoogle} = useContext(AuthContext);
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const from = location.state?.from?.pathname || '/home';
+  console.log(from);
 
   const handleSignIn =(event)=>{
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email,password);
     form.reset();
     login(email,password)
     .then(result=>{
       console.log(result.user)
+      navigate(from, {replace : true})
       toast.success('Login successful.')
     })
     .catch(error=>{

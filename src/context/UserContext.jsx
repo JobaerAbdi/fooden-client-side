@@ -30,6 +30,7 @@ const UserContext = ({children}) => {
     };
 
     const logOut = ()=>{
+        setLoading(true)
         return signOut(auth)
     };
 
