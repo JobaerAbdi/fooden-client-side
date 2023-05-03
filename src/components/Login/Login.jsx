@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
   const [error, setError] = useState('')
-  const {login,signInWithGoogle} = useContext(AuthContext);
+  const {login,signInWithGoogle,signInWithGithub} = useContext(AuthContext);
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -35,6 +35,17 @@ const Login = () => {
     .then(result=>{
       console.log(result.user);
       toast.success('Google sign in success')
+    })
+    .catch(error=>{
+      toast.error(error.message)
+    }) 
+  };
+
+  const handleSignInWithGithub =()=>{
+    signInWithGithub()
+    .then(result=>{
+      console.log(result.user);
+      toast.success('Github sign in success')
     })
     .catch(error=>{
       toast.error(error.message)
@@ -116,7 +127,7 @@ const Login = () => {
             </svg>
           </button>
 
-          <button aria-label='Log in with GitHub' className='p-3 rounded-sm'>
+          <button onClick={handleSignInWithGithub} aria-label='Log in with GitHub' className='p-3 rounded-sm'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               viewBox='0 0 32 32'
