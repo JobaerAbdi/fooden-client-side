@@ -2,8 +2,8 @@ import React from "react";
 
 const MainBanner = () => {
   return (
-    <div className="flex lg:px-16 mt-5 mb-10">
-      <div className="sm:w-full lg:w-3/5">
+    <div className="flex flex-col lg:flex-row lg:px-16 mt-5 mb-10">
+      <div className="sm:w-full mb-5 lg:w-3/5">
         <img className="w-full h-screen"
           src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/aaf1eb129440275.616b030979e38.png"
           alt=""

@@ -2,14 +2,14 @@ import React from "react";
 
 const SectionTwo = () => {
   return (
-    <div className="flex lg:px-12 mt-12 mb-9">
+    <div className="flex flex-col lg:flex-row lg:px-12 mt-12 mb-9">
       <div>
         <img className='h-96'
           src="https://5369657.fs1.hubspotusercontent-na1.net/hub/5369657/hubfs/Roberto%20Holz-1.jpg?width=999&quality=low"
           alt=""
         />
       </div>
-      <div className='flex w-3/5 mt-12 mb-9 ms-9 font-semibold'>
+      <div className='w-3/5 mt-12 mb-9 ms-9 font-semibold'>
         <p>
           Chefs are responsible for handling all food-related concerns and
           taking care of all food preparation needs at restaurants or any other
