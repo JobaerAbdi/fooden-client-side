@@ -11,7 +11,7 @@ const DisplayRecipe = React.lazy(()=>import('../../Pages/DisplayRecipe'));
 const Home = () => {
     const [recipes,setRecipes] = useState([])
     useEffect(()=>{
-        fetch('http://localhost:5000/recipes')
+        fetch('https://fooden-server-side-jobaerabdi.vercel.app/recipes')
         .then(res=>res.json())
         .then(data=>setRecipes(data))
     },[])

@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             {
                 path : '/recipes/:id',
                 element : <PrivateRoutes><ChefRecipesItem></ChefRecipesItem></PrivateRoutes>,
-                loader : ({params})=> fetch(`http://localhost:5000/recipes/${params.id}`)
+                loader : ({params})=> fetch(`https://fooden-server-side-jobaerabdi.vercel.app/recipes/${params.id}`)
             },
         ]
     }
